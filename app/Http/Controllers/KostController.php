@@ -51,7 +51,7 @@ class KostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $this->kostRepository->update($request, $id);
     }
 
     /**

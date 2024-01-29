@@ -46,8 +46,29 @@ class KostRepository implements KostInterface
         return new KostResource($kost);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $kost = Kost::find($id);
+
+        if (!$kost){
+            $response = ['message' => 'Kost Id not found'];
+
+            return response($response, 422);
+        }
+
+        $kost->name = $request->name;
+        $kost->address = $request->address;
+        $kost->description = $request->description;
+        $kost->city = $request->city;
+        $kost->price = $request->price;
+
+        if ($kost->save()) {
+            $response = ['data' => $kost, 'message' => 'Kost berhasil disimpan!'];
+
+            return response($response, 200);
+        }
+
+        return response(['message' => 'Bad request'], 400);
     }
 
     public function delete($id)
