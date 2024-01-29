@@ -21,6 +21,7 @@ Route::post('/owner/register', [AuthOwnerController::class, 'register'])->name('
 Route::post('/owner/login', [AuthOwnerController::class, 'login'])->name('api.owner.login');
 
 Route::get('/kosts', [KostController::class, 'index'])->name('api.kost.index');
+Route::get('/kosts/{id}', [KostController::class, 'show'])->name('api.kost.show');
 
 Route::middleware('auth:owners')->group(function () {
     Route::post('/owner/logout', [AuthOwnerController::class, 'logout'])->name('api.owner.logout');
