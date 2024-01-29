@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthOwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//public API
+Route::post('/owner/register', [AuthOwnerController::class, 'register'])->name('api.owner.register');
+Route::post('/owner/login', [AuthOwnerController::class, 'login'])->name('api.owner.login');
+
+Route::middleware('auth:owners')->group(function () {
+    Route::post('/owner/logout', [AuthOwnerController::class, 'logout'])->name('api.owner.logout');
 });
+
