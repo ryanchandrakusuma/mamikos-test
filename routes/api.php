@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthOwnerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthOwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +22,3 @@ Route::post('/owner/login', [AuthOwnerController::class, 'login'])->name('api.ow
 Route::middleware('auth:owners')->group(function () {
     Route::post('/owner/logout', [AuthOwnerController::class, 'logout'])->name('api.owner.logout');
 });
-
