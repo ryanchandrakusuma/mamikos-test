@@ -7,4 +7,6 @@ use Illuminate\Http\Request;
 interface AuthUserInterface
 {
     public function register(Request $request);
+
+    public function login(Request $request);
 }

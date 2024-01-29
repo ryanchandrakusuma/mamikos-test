@@ -27,4 +27,14 @@ class AuthUserController extends Controller
 
         return $this->authUserRepository->register($request);
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+
+        return $this->authUserRepository->login($request);
+    }
 }

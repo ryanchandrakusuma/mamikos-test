@@ -22,18 +22,16 @@ Route::post('/owner/register', [AuthOwnerController::class, 'register'])->name('
 Route::post('/owner/login', [AuthOwnerController::class, 'login'])->name('api.owner.login');
 
 Route::post('/user/register', [AuthUserController::class, 'register'])->name('api.user.register');
+Route::post('/user/login', [AuthUserController::class, 'login'])->name('api.user.login');
 
 Route::get('/kosts', [KostController::class, 'index'])->name('api.kost.index');
 Route::get('/kosts/{id}', [KostController::class, 'show'])->name('api.kost.show');
 
-Route::middleware('auth:owners')->group(function () {
+Route::middleware(['auth:owners', 'role:owner'])->group(function () {
     Route::post('/owner/logout', [AuthOwnerController::class, 'logout'])->name('api.owner.logout');
-
-    Route::middleware('role:owner')->group(function () {
-        Route::post('/kosts', [KostController::class, 'store'])->name('api.kost.store');
-        Route::put('/kosts/{id}', [KostController::class, 'update'])->name('api.kost.update');
-        Route::delete('/kosts/{id}', [KostController::class, 'destroy'])->name('api.kost.destroy');
-    });
+    Route::post('/kosts', [KostController::class, 'store'])->name('api.kost.store');
+    Route::put('/kosts/{id}', [KostController::class, 'update'])->name('api.kost.update');
+    Route::delete('/kosts/{id}', [KostController::class, 'destroy'])->name('api.kost.destroy');
 });
 
 Route::middleware(['auth:users', 'role:premium-user,regular-user'])->group(function () {
