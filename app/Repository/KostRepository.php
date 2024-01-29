@@ -50,7 +50,7 @@ class KostRepository implements KostInterface
     {
         $kost = Kost::find($id);
 
-        if (!$kost){
+        if (! $kost) {
             $response = ['message' => 'Kost Id not found'];
 
             return response($response, 422);
@@ -73,5 +73,20 @@ class KostRepository implements KostInterface
 
     public function delete($id)
     {
+        $kost = Kost::find($id);
+
+        if (! $kost) {
+            $response = ['message' => 'Kost Id not found'];
+
+            return response($response, 422);
+        }
+
+        if ($kost->delete()) {
+            $response = ['data' => $kost, 'message' => 'Kost berhasil dihapus!'];
+
+            return response($response, 200);
+        }
+
+        return response(['message' => 'Bad request'], 400);
     }
 }

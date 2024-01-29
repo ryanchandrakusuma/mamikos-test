@@ -59,6 +59,6 @@ class KostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->kostRepository->delete($id);
     }
 }
