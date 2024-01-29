@@ -28,8 +28,8 @@ class AuthOwnerController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'firstName' => 'required|string|max:100',
-            'lastName' => 'string|max:100',
+            'first_name' => 'required|string|max:100',
+            'last_name' => 'string|max:100',
             'email' => 'required|string|email|max:255|unique:owners|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
