@@ -31,4 +31,25 @@ class AuthUserRepository implements AuthUserInterface
 
         return response($response, 200);
     }
+
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken('User API Token')->accessToken;
+                $response = ['token' => $token];
+
+                return response($response, 200);
+            } else {
+                $response = ['message' => 'Password mismatch'];
+
+                return response($response, 422);
+            }
+        } else {
+            $response = ['message' =>'User does not exist'];
+
+            return response($response, 422);
+        }
+    }
 }
