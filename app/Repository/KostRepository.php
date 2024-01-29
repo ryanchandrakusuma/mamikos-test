@@ -41,6 +41,9 @@ class KostRepository implements KostInterface
 
     public function getById($id)
     {
+        $kost = Kost::find($id);
+
+        return new KostResource($kost);
     }
 
     public function update(Request $request)
