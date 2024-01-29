@@ -12,7 +12,7 @@ interface KostInterface
 
     public function getById($id);
 
-    public function update(Request $request);
+    public function update(Request $request, $id);
 
     public function delete($id);
 }
