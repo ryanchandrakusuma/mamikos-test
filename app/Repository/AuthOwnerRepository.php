@@ -39,7 +39,7 @@ class AuthOwnerRepository implements AuthOwnerInterface
         $owner = Owner::create($request->toArray());
         $owner->assignRole('owner');
 
-        $token = $owner->createToken('API Token')->accessToken;
+        $token = $owner->createToken('Owner API Token')->accessToken;
         $response = ['token' => $token];
 
         return response($response, 200);
