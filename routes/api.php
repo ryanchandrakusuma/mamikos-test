@@ -28,5 +28,6 @@ Route::middleware('auth:owners')->group(function () {
 
     Route::middleware('role:owner')->group(function () {
         Route::post('/kosts', [KostController::class, 'store'])->name('api.kost.store');
+        Route::put('/kosts/{id}', [KostController::class, 'update'])->name('api.kost.update');
     });
 });
