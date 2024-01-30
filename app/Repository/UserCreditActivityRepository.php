@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Interfaces\UserCreditActivityInterface;
 use App\Http\Resources\UserCreditActivityCollection;
 use App\Models\UserCreditActivity;
+use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 
 class UserCreditActivityRepository implements UserCreditActivityInterface
@@ -24,7 +25,10 @@ class UserCreditActivityRepository implements UserCreditActivityInterface
 
     public function get(){
         $user_id = Auth::user()->id;
-        $userCreditActivities = UserCreditActivity::where('user_id', '=', $user_id);
+
+        $userCreditActivities = QueryBuilder::for(UserCreditActivity::class)
+        ->where('user_id', '=', $user_id)
+        ->get();
 
         return new UserCreditActivityCollection($userCreditActivities);
     }
