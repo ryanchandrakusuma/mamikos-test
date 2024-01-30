@@ -29,7 +29,9 @@ class AuthUserRepository implements AuthUserInterface
         $user->assignRole($role);
 
         $token = $user->createToken('User API Token')->accessToken;
-        $response = ['token' => $token];
+        $response = ['data' => [
+            'user' => $user, 'token' => $token,
+        ]];
 
         return response($response, 200);
     }
@@ -40,7 +42,9 @@ class AuthUserRepository implements AuthUserInterface
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('User API Token')->accessToken;
-                $response = ['token' => $token];
+                $response = ['data' => [
+                    'user' => $user, 'token' => $token,
+                ]];
 
                 return response($response, 200);
             } else {
