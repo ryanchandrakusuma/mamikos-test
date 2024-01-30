@@ -14,18 +14,20 @@ This project is a result of mamikos' study case using Laravel.
 1. Install any dependencies needed
 ```composer install```
 
-2. Migrate the databases including the seed (for roles purposes)
+2. Make your .env file by copying .env.example and fill the details based on your environment
+
+3. Migrate the databases including the seed (for roles purposes)
 ```php artisan migrate```
 
-3. Install passport for auth purposes
+4. Install passport for auth purposes
 ```php artisan passport:install```
 
-4. Generate RSA Key (I'm using 4096, but you can use at least 2048) from any key generator and put it to .env (there's example on .env.example)
-5. Run scheduler locally for development purposes
+5. Generate RSA Key (I'm using 4096, but you can use at least 2048) from any key generator and put it to .env (there's example on .env.example)
+6. Run scheduler locally for development purposes
 ```php artisan schedule:work```
 
-6. Export postman's collection and environment so you can try the APIs!
-7. Happy coding!
+7. Export postman's collection and environment so you can try the APIs!
+8. Happy coding!
 ```php artisan serve```
 
 This project is using Laravel and MySQL.
