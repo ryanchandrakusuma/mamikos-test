@@ -8,6 +8,8 @@ use App\Interfaces\KostInterface;
 use App\Models\Kost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class KostRepository implements KostInterface
 {
@@ -34,7 +36,15 @@ class KostRepository implements KostInterface
 
     public function get()
     {
-        $kosts = Kost::all();
+        $kosts = QueryBuilder::for(Kost::class)
+        ->allowedFilters([
+            AllowedFilter::scope('price_starts_between'),
+            'name',
+            'address',
+            'city',
+        ])
+        ->allowedSorts('price')
+        ->get();
 
         return new KostCollection($kosts);
     }
