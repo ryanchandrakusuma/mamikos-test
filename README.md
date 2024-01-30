@@ -14,7 +14,8 @@ This project is a result of mamikos' study case using Laravel.
 1. Install any dependencies needed
 ```composer install```
 
-2. Make your .env file by copying .env.example and fill the details based on your environment
+2. Make your .env file by copying .env.example and fill the details based on your environment and do 
+```php artisan key:generate``` 
 
 3. Migrate the databases including the seed (for roles purposes)
 ```php artisan migrate```
