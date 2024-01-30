@@ -19,8 +19,8 @@ class UserCreditActivityCollection extends ResourceCollection
                 return [
                     'id' => $activity->id,
                     'created_at' => $activity->created_at,
-                    'amount' => $activity->amount,
-                    'action' => $activity->action,
+                    'credits' => $activity->credits,
+                    'actions' => $activity->actions,
                 ];
             }),
         ];
