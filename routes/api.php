@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthOwnerController;
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\KostController;
+use App\Http\Controllers\UserKostRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,5 @@ Route::middleware(['auth:owners', 'role:owner'])->group(function () {
 
 Route::middleware(['auth:users', 'role:premium-user|regular-user'])->group(function () {
     Route::post('/user/logout', [AuthUserController::class, 'logout'])->name('api.user.logout');
+    Route::post('/kosts/{id}/ask', [UserKostRequestController::class, 'store'])->name('api.kost.ask.store');
 });

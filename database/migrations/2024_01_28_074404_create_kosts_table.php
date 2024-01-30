@@ -12,7 +12,7 @@ return new class() extends Migration {
     {
         Schema::create('kosts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('owner_id')->constrained()->cascadeOnDelete();
             $table->string('name', 100);
             $table->string('address', 100);
             $table->string('city', 100);

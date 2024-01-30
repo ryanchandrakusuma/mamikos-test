@@ -17,6 +17,8 @@ class User extends Authenticatable
     use HasRoles;
 
     protected $guard_name = 'users';
+    protected $primaryKey = 'id';
+    public $incrementing = false; 
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +26,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'first_name',
         'last_name',
         'email',
