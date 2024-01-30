@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\User;
+use Illuminate\Console\Command;
 
 class AddUserCreditsMonthly extends Command
 {
@@ -29,7 +29,7 @@ class AddUserCreditsMonthly extends Command
         User::chunk(200, function ($users) {
             foreach ($users as $user) {
                 $credits = 20;
-                if ($user->hasRole('premium-user')){
+                if ($user->hasRole('premium-user')) {
                     $credits = 40;
                 }
 

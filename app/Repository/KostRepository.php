@@ -8,8 +8,8 @@ use App\Interfaces\KostInterface;
 use App\Models\Kost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class KostRepository implements KostInterface
 {
