@@ -34,5 +34,6 @@ Route::middleware(['auth:owners', 'role:owner'])->group(function () {
     Route::delete('/kosts/{id}', [KostController::class, 'destroy'])->name('api.kost.destroy');
 });
 
-Route::middleware(['auth:users', 'role:premium-user,regular-user'])->group(function () {
+Route::middleware(['auth:users', 'role:premium-user|regular-user'])->group(function () {
+    Route::post('/user/logout', [AuthUserController::class, 'logout'])->name('api.user.logout');
 });

@@ -52,4 +52,18 @@ class AuthUserRepository implements AuthUserInterface
             return response($response, 422);
         }
     }
+
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+        if (! $token) {
+            $response = ['message' => 'Token not valid'];
+
+            return response($response, 422);
+        }
+        $token->revoke();
+        $response = ['message' => 'You have been successfully logged out!'];
+
+        return response($response, 200);
+    }
 }
