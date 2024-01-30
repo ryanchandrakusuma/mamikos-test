@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "61c67eb5-ccd3-4a86-a68e-72b6eab5bda6",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "11266797",
+		"_collection_link": "https://inspira-egois.postman.co/workspace/My-Workspace~ea87c163-4adb-4c4c-85e1-fab414dcfd13/collection/11266797-61c67eb5-ccd3-4a86-a68e-72b6eab5bda6?action=share&source=collection_link&creator=11266797"
+	},
+	"item": [
+		{
+			"name": "Mamikos_test",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Owner",
+							"item": [
+								{
+									"name": "Owner Register",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "first_name",
+													"value": "Wewe",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "wewe2@wewe.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "wewe1234",
+													"type": "text"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "wewe1234",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{currentUri}}/api/owner/register"
+									},
+									"response": []
+								},
+								{
+									"name": "Owner Login",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "wewe2@wewe.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "wewe1234",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{currentUri}}/api/owner/login"
+									},
+									"response": []
+								},
+								{
+									"name": "Owner Logout",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{ownerBearerToken}}"
+											}
+										},
+										"method": "POST",
+										"header": [],
+										"url": "{{currentUri}}/api/owner/logout"
+									},
+									"response": []
+								},
+								{
+									"name": "Dashboard API (including owned kost)",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{ownerBearerToken}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{currentUri}}/api/owner/{{ownerId}}?include=kosts",
+											"host": [
+												"{{currentUri}}"
+											],
+											"path": [
+												"api",
+												"owner",
+												"{{ownerId}}"
+											],
+											"query": [
+												{
+													"key": "include",
+													"value": "kosts",
+													"description": "disable to remove kosts"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "User",
+							"item": [
+								{
+									"name": "User Register",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "first_name",
+													"value": "Wewe",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "weweuser1@wewe.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "wewe1234",
+													"type": "text"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "wewe1234",
+													"type": "text"
+												},
+												{
+													"key": "type",
+													"value": "premium-user",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{currentUri}}/api/user/register"
+									},
+									"response": []
+								},
+								{
+									"name": "User Login",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "weweuser1@wewe.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "wewe1234",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{currentUri}}/api/user/login"
+									},
+									"response": []
+								},
+								{
+									"name": "User Credit Activity",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{userBearerToken}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"url": "{{currentUri}}/api/user/activity"
+									},
+									"response": []
+								},
+								{
+									"name": "User Logout",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{userBearerToken}}"
+											}
+										},
+										"method": "POST",
+										"header": [],
+										"url": "{{currentUri}}/api/user/logout"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Kost",
+					"item": [
+						{
+							"name": "Create Kost",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{ownerBearerToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"ost3\",\n    \"address\": \"Jl. ost3\",\n    \"city\": \"Surakarta, Surakarta\",\n    \"description\": \"description kost1\",\n    \"price\": 30000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{currentUri}}/api/kosts/"
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Kosts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{currentUri}}/api/kosts?filter[name]=ost&filter[address]=ost&filter[price_starts_between]=10000,30000&sort=-price",
+									"host": [
+										"{{currentUri}}"
+									],
+									"path": [
+										"api",
+										"kosts"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "ost"
+										},
+										{
+											"key": "filter[address]",
+											"value": "ost"
+										},
+										{
+											"key": "filter[price_starts_between]",
+											"value": "10000,30000"
+										},
+										{
+											"key": "sort",
+											"value": "price",
+											"description": "sort for asc",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-price",
+											"description": "sort for desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Detail Kost",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{currentUri}}/api/kosts/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Kost",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{ownerBearerToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"kost1\",\n    \"address\": \"Jl. kost1\",\n    \"city\": \"Jakarta, Jakarta\",\n    \"description\": \"description kost1\",\n    \"price\": 10000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{currentUri}}/api/kosts/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Kost",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{ownerBearerToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{currentUri}}/api/kosts/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ask Kost Availability",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{userBearerToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"question\" : \"apakah ada ruangan untuk 1 orang?\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{currentUri}}/api/kosts/2/ask"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
