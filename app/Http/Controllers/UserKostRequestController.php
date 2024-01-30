@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repository\UserKostRequestRepository;
+use Illuminate\Http\Request;
 
 class UserKostRequestController extends Controller
 {
@@ -28,7 +28,7 @@ class UserKostRequestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'question' => 'required|string'
+            'question' => 'required|string',
         ]);
 
         return $this->userKostRequestRepository->create($request);
