@@ -12,7 +12,7 @@ class UserKostRequestRepository implements UserKostRequestInterface
     public function create(Request $request)
     {
         $user = Auth::user();
-        if ($user->credits < 5){
+        if ($user->credits < 5) {
             $response = ['message' => 'Credits tidak cukup'];
 
             return response($response, 400);
@@ -35,5 +35,3 @@ class UserKostRequestRepository implements UserKostRequestInterface
         return response(['message' => 'Bad request'], 400);
     }
 }
-
-?>

@@ -7,8 +7,8 @@ use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Ramsey\Uuid\Uuid;
+use Spatie\Permission\Models\Role;
 
 class AuthOwnerRepository implements AuthOwnerInterface
 {

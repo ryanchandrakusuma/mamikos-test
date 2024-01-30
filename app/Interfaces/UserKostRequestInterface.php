@@ -8,5 +8,3 @@ interface UserKostRequestInterface
 {
     public function create(Request $request);
 }
-
-?>

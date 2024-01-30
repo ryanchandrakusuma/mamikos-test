@@ -17,8 +17,10 @@ class Owner extends Authenticatable
     use HasRoles;
 
     protected $guard_name = 'owners';
+
     protected $primaryKey = 'id';
-    public $incrementing = false; 
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
