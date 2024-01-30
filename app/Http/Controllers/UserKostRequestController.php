@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Repository\UserKostRequestRepository;
+use App\Repository\UserCreditActivityRepository;
 use Illuminate\Http\Request;
 
 class UserKostRequestController extends Controller
 {
     protected $userKostRequestRepository;
+    protected $userCreditActivityRepository;
 
-    public function __construct(UserKostRequestRepository $userKostRequestRepository)
+    public function __construct(UserKostRequestRepository $userKostRequestRepository, UserCreditActivityRepository $userCreditActivityRepository)
     {
         $this->userKostRequestRepository = $userKostRequestRepository;
+        $this->userCreditActivityRepository = $userCreditActivityRepository;
     }
 
     /**
@@ -31,7 +34,12 @@ class UserKostRequestController extends Controller
             'question' => 'required|string',
         ]);
 
-        return $this->userKostRequestRepository->create($request);
+        $response = $this->userKostRequestRepository->create($request);
+        if ($response->status() == 200){
+            $this->userCreditActivityRepository->create(-5, 'Ask Kost Availability');
+        }
+
+        return $response;
     }
 
     /**
