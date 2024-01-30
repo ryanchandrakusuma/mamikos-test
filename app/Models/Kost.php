@@ -18,4 +18,9 @@ class Kost extends Model
         return $query->where('price', '>=', $price1)
         ->where('price', '<=', $price2);
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }

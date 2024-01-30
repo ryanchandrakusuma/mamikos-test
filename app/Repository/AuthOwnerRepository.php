@@ -18,7 +18,9 @@ class AuthOwnerRepository implements AuthOwnerInterface
         if ($owner) {
             if (Hash::check($request->password, $owner->password)) {
                 $token = $owner->createToken('Owner API Token')->accessToken;
-                $response = ['token' => $token];
+                $response = ['data' => [
+                    'owner' => $owner, 'token' => $token,
+                ]];
 
                 return response($response, 200);
             } else {
@@ -42,7 +44,9 @@ class AuthOwnerRepository implements AuthOwnerInterface
         $owner->assignRole('owner');
 
         $token = $owner->createToken('Owner API Token')->accessToken;
-        $response = ['token' => $token];
+        $response = ['data' => [
+            'owner' => $owner, 'token' => $token,
+        ]];
 
         return response($response, 200);
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthOwnerController;
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\KostController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserKostRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,10 @@ Route::get('/kosts', [KostController::class, 'index'])->name('api.kost.index');
 Route::get('/kosts/{id}', [KostController::class, 'show'])->name('api.kost.show');
 
 Route::middleware(['auth:owners', 'role:owner'])->group(function () {
+    Route::get('/owner/{id}', [OwnerController::class, 'show'])->name('api.owner.show');
     Route::post('/owner/logout', [AuthOwnerController::class, 'logout'])->name('api.owner.logout');
+
+    //kosts
     Route::post('/kosts', [KostController::class, 'store'])->name('api.kost.store');
     Route::put('/kosts/{id}', [KostController::class, 'update'])->name('api.kost.update');
     Route::delete('/kosts/{id}', [KostController::class, 'destroy'])->name('api.kost.destroy');
