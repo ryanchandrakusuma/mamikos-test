@@ -30,4 +30,4 @@ This project is a result of mamikos' study case using Laravel.
 8. Happy coding!
 ```php artisan serve```
 
-This project is using Laravel and MySQL.
+This project is using Laravel and MySQL 8.0.33.
