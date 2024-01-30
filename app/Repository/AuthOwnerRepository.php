@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Ramsey\Uuid\Uuid;
 
 class AuthOwnerRepository implements AuthOwnerInterface
 {
@@ -34,6 +35,7 @@ class AuthOwnerRepository implements AuthOwnerInterface
 
     public function register(Request $request)
     {
+        $request['id'] = Uuid::uuid4();
         $request['password'] = Hash::make($request['password']);
 
         $owner = Owner::create($request->toArray());
