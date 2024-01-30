@@ -28,9 +28,9 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('name')->after('id');
-            $table->string('firstName')->after('updated_at')->change();
-            $table->string('lastName')->after('firstName')->change();
-            $table->integer('credits')->after('lastName')->change();
+            $table->string('first_name')->after('updated_at')->change();
+            $table->string('last_name')->after('first_name')->change();
+            $table->integer('credits')->after('last_name')->change();
             $table->dropSoftDeletes();
             $table->renameColumn('first_name', 'firstName');
             $table->renameColumn('last_name', 'lastName');

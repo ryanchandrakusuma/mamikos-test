@@ -12,7 +12,7 @@ return new class() extends Migration {
     {
         Schema::create('user_kost_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('kost_id')->constrained()->cascadeOnDelete();
             $table->string('question', 255);
             $table->string('answer', 255)->nullable();

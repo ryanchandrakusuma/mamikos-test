@@ -12,7 +12,7 @@ return new class() extends Migration {
     {
         Schema::create('user_credit_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
             $table->integer('credits');
             $table->string('actions', 100);
             $table->timestamps();
